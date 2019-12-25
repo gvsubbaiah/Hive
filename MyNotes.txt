@@ -1,0 +1,28 @@
+SerDe:
+Serialize on write
+Deserialize on read
+on write: The structured data is serialized into a bit / byte stream for storage.
+on read : The data is descrialized from bit / byte format to the structure required by the reader.
+
+HDFS stores the data in bit / bye blocks.
+
+Spark Streaming:
+1. scalable high throughput, fault-torerant stream processing of live data streams.
+2. received lives input data and divides into small batches which are porcessed and returned as batches.
+3. DStream - sequence of RDD
+4. Currently support scala and Java
+5. Basic python support avialable in Spark 1.2
+
+Receives data from : kafka, flume, HDFS/S3 Kiness, Twitter
+Pushes Data to : HDFS, Databases, Dashboard
+
+Internal:
+The input stream (DStream) goes into spark streaming.
+Breaks up into batches.
+feeds into the spark engine processing.
+Generate the final results in streams of batches.
+Silicing windows operations: 
+	-window computations
+		- window length
+		- bliding interval
+		- reduceByKeyAndWindow
