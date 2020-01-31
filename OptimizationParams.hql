@@ -28,6 +28,15 @@ set mapreduce.reduce.java.opts=-Xmx3276m;
 set tez.grouping.max-size = 268435456;
 set hive.exec.parallel.thread.number=16;
 
+SET hive.merge.mapfiles=true;
+SET hive.merge.mapredfiles=true;
+SET hive.merge.smallfiles.avgsize=283115520;
+SET hive.merge.size.per.task=209715200;
+SET hive.tez.container.size=4096;
+SET tez.am.resource.memory.mb=1024;
+SET mapreduce.input.fileinputformat.split.minsize=256000000;
+
+
 Multi SerDe Format: 
 ROW FORMAT SERDE 'org.apache.hadoop.hive.contrib.serde2.MultiDelimitSerDe'
 WITH SERDEPROPERTIES (
