@@ -1,0 +1,99 @@
+https://docs.microsoft.com/en-us/azure/hdinsight/spark/apache-spark-create-standalone-application
+
+ 
+Here are list of some Google dorks you can play with:
+•         “Index of /admin”
+•         “Index of /password”
+•         “Index of /mail”
+•         “Index of /” +passwd
+•         “Index of /” +password.txt
+•         “Index of /” +.htaccess
+•         index of ftp +.mdb allinurl:/cgi-bin/ +mailto
+•         administrators.pwd.index
+•         authors.pwd.index
+•         service.pwd.index
+•         filetype:config web
+•         gobal.asax index
+•         allintitle: “index of/admin”
+•         allintitle: “index of/root”
+•         allintitle: sensitive filetype:doc
+•         allintitle: restricted filetype :mail
+•         allintitle: restricted filetype:doc site:gov
+•         inurlasswd filetype:txt
+•         inurl:admin filetype:db
+•         inurl:iisadmin
+•         inurl:”auth_user_file.txt”
+•         inurl:”wwwroot/*.”
+•         top secret site:mil
+•         confidential site:mil
+•         allinurl: winnt/system32/ (get cmd.exe)
+•         allinurl:/bash_history
+•         intitle:”Index of” .sh_history
+•         intitle:”Index of” .bash_history
+•         intitle:”index of” passwd
+•         intitle:”index of” people.lst
+•         intitle:”index of” pwd.db
+•         intitle:”index of” etc/shadow
+•         intitle:”index of” spwd
+•         intitle:”index of” master.passwd
+•         intitle:”index of” htpasswd
+•         intitle:”index of” members OR accounts
+•         intitle:”index of” user_carts OR user_cart
+ 
+Bonus Tricks:
+Download all your needs without any Software
+To download a Movie, try –
+NAME_OF_THE_MOVIE -inurl:(htm|html|php|pls|txt) intitle:index.of “last modified” (mkv|mp4|avi)
+ 
+To download a Software, try –
+NAME_OF_THE_SOFTWARE -inurl:(htm|html|php|pls|txt) intitle:index.of “last modified” (exe|iso|rar|zip|dmg)
+ 
+To download a Song, try –
+NAME_OF_THE_SONG -inurl:(htm|html|php|pls|txt) intitle:index.of “last modified” (mp3|ogg)
+class findMax {
+  def fMax (x:Array[Int]):Int = {
+    x.reduceLeft(_ max _)
+}
+}
+ 
+object fMax extends App{
+val ar =new findMax
+println(ar.fMax(Array(20, 12, 6, 15, 2, 9)))
+}
+ 
+Hive recommended configuration:
+hive.vectorized.execution.enabled=true
+ 
+hive.cbo.enable=true
+hive.optimize.reducededuplication.min.reducer=4
+hive.optimize.reducededuplication=true
+hive.orc.splits.include.file.footer=false
+hive.merge.mapfiles=true
+hive.merge.sparkfiles=false
+hive.merge.smallfiles.avgsize=16000000
+hive.merge.size.per.task=256000000
+hive.merge.orcfile.stripe.level=true
+hive.auto.convert.join=true
+hive.auto.convert.join.noconditionaltask=true
+hive.auto.convert.join.noconditionaltask.size=894435328
+hive.optimize.bucketmapjoin.sortedmerge=false
+hive.map.aggr.hash.percentmemory=0.5
+hive.map.aggr=true
+hive.optimize.sort.dynamic.partition=false
+hive.stats.autogather=true
+hive.stats.fetch.column.stats=true
+hive.vectorized.execution.reduce.enabled=false
+hive.vectorized.groupby.checkinterval=4096
+hive.vectorized.groupby.flush.percent=0.1
+hive.compute.query.using.stats=true
+hive.limit.pushdown.memory.usage=0.4
+hive.optimize.index.filter=true
+hive.exec.reducers.bytes.per.reducer=67108864
+hive.smbjoin.cache.rows=10000
+hive.exec.orc.default.stripe.size=67108864
+hive.fetch.task.conversion=more
+hive.fetch.task.conversion.threshold=1073741824
+hive.fetch.task.aggr=false
+mapreduce.input.fileinputformat.list-status.num-threads=5
+spark.kryo.referenceTracking=false
+spark.kryo.classesToRegister=org.apache.hadoop.hive.ql.io.HiveKey,org.apache.hadoop.io.BytesWritable,org.apache.hadoop.hive.ql.exec.vector.VectorizedRowBatch
