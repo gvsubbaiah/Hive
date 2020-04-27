@@ -1,0 +1,52 @@
+#tbal=$(tail -1 | awk -F 'ยง' '{print $3}' | awk -F ':' '{print $2}');  #checkSum check
+#fldidx=$(sed -n $'2s/ยง/\\\n/gp' | grep -nx $bal_amt | cut -d: -f1)
+#fbal=$(awk -F 'ยง' '{s+=$18}END{printf "%.2f", s}' )
+
+--conf mapreduce.input.fileinputformat.input.dir.recursive=true --conf hive.input.dir.recursive=true --conf hive.mapred.supports.subdirectories=true --conf hive.supports.subdirectories=true
+
+date +%F | sed 's/-//g'
+
+val jRDD=spark.read.option("multiline","true").option("mode","PERMISSIVE").json("file:///home/sample1.json")
+jRDD.select($"SampleDate".getItem(0)).head().get(0)
+
+cat  | awk -F ":" '{print $2":"$3":"$4}' | awk '{$1=$1};1'
+
+
+awk -F ':' '{print $2}' 
+
+metadata=$(awk -F ":" '{print $2":"$3":"$4}' |  awk '{$1=$1};1' | sed 's/::$//g' | awk '{print}' ORS=',' | sed 's/,$//g')
+
+tomailid=$(awk -F ":" '{print $2}'  | grep "@"  |  awk '{$1=$1};1' | awk '{print}' ORS=';' | sed 's/;$//g')
+
+
+metainfo=$(cat )
+
+
+#delete next line after pattern match
+sed -i '/activityid/{n;d}' *
+#replace with single quote
+sed -i "s/,/,\ as ,\n'"'${hivevar:cob}'"' as ,\n'"'${hivevar:aid}'"' as /g" *
+
+
+hivesite=/usr/hdp/current/hive-client/conf/hive-site.xml
+ln=$(($(grep -n hive.zookeeper.quorum $hivesite | cut -d : -f1)+1)) 
+hivezk=$(sed ''"$ln"','"$ln"'!d' $hivesite | sed '/^\/ >/d' | sed 's/<[^>]*.//g'|tr -d ' ')
+kerb="serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2;ssl=true;sslTrustStore=/etc/hive-jks/hivetrust.jks;trustStorePassword=;transportMode=http;httpPath=cliservice;"
+HIVE_URL="jdbc:hive2://${hivezk}/;${kerb}"
+beeline -u $HIVE_URL
+
+bline="beeline -u $HIVE_URL --outputformat=csv2 --incremental=true -e "
+tbls=""
+for i in ${tbls[@]}
+do
+cols=$($bline "desc .$i")
+echo -e "create table db.${i} (\n $cols \n) row formatted \n field delimited '$' \n stored as textfile; \n'" >>
+#echo -e "select \n $cols \n from .${i} \n where  >>/home/$USER/${i}_2019_12_31.txt" >>
+done
+
+
+cols=$($bline "show columns in ")
+
+sed -i 's/|//g;1d;$d' 
+sed -i '$!s/$/,/' 
+sed -i '1 i\CREATE TABLE ${hivevar:STG}. (' .hql
