@@ -1,2 +1,2 @@
-tchnotutorials.blogspot.in
-hdptoolsconfig.blogspot.in
+# tchnotutorials.blogspot.in
+# hdptoolsconfig.blogspot.in
