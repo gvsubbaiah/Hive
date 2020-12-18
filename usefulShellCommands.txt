@@ -50,3 +50,11 @@ cols=$($bline "show columns in ")
 sed -i 's/|//g;1d;$d' 
 sed -i '$!s/$/,/' 
 sed -i '1 i\CREATE TABLE ${hivevar:STG}. (' .hql
+
+#Range of Dates Generation using until utility #18-12-2020
+---------------------------------------------
+StartDt=
+EndDt=
+
+until [ $StartDt = $EndDt ];do StartDt=$(date -I -d "$StartDt +1 day"); echo $StartDt; done;
+
