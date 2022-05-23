@@ -3,7 +3,9 @@ ROOT=$(dirname $(dirname $0))
 OUSR=$3
 driverpath=${ROOT}/lib/ojdbc6.jar
 config=${ROOT}/config
-props=$(echo -e " --driver-memory 2G --executor-cores 3 --executor-memory 5G --conf spark.sparkContext.defaultParallelism=15 --conf  spark.driver.extraClassPath=$driverpath --conf spark.executor.extraClassPath=$driverpath --jars $driverpath --conf spark.ui.port=22890")
+props=$(echo -e " --driver-memory 2G --executor-cores 3 --executor-memory 5G \ 
+--conf spark.sparkContext.defaultParallelism=15 --conf  spark.driver.extraClassPath=$driverpath \
+--conf spark.executor.extraClassPath=$driverpath --jars $driverpath --conf spark.ui.port=22890")
 rundate=$(date +"%F")
 
 #Removing old log files
